@@ -1,9 +1,36 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Greeting from '../components/Greeting.jsx';
-const pageTitle = "Home Page";
+import DisplayBlock from '../components/GuideDisplayBlock.astro';
+const allGuides = Object.values(import.meta.glob('./guides/*.md', { eager: true }));
+import '../styles/global.css';
+
+const pageTitle = "Guides";
 ---
+
 <BaseLayout pageTitle={pageTitle}>
-  <Greeting client:load messages={["Hej", "Hallo", "Hola", "Habari"]} />
-  <h2>My awesome blog subtitle</h2>
+  <ul class="guides-grid">
+    {allGuides.map((guide: any) => (
+      <DisplayBlock 
+        url={guide.url} 
+        title={guide.frontmatter.title} 
+        image={guide.frontmatter.image} 
+      />
+    ))}
+  </ul>
 </BaseLayout>
+
+<style>
+  .guides-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+  }
+
+  .x-center {
+    text-align: center;
+    margin-top: 1px;
+  }
+</style>
+

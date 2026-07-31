@@ -1,34 +1,52 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-const allPosts = Object.values(import.meta.glob('../posts/*.md', { eager: true }));
-const tags = [...new Set(allPosts.map((post: any) => post.frontmatter.tags).flat())];
-const pageTitle = "Tag Index";
+import BaseLayout from '../../layouts/BaseLayout.astro'
+const allGuides = Object.values(import.meta.glob('../guides/*.md', { eager: true })); /*eager part makes it get all of the needed files right away, at the same time*/
+const tags = [...new Set(allGuides.map((guide: any) => guide.frontmatter.tags).flat())];
+import '../../styles/global.css'
+
+const pageTitle = "Tags";
 ---
-<head>
-    <style>
-    a {
-        color: #00539F;
-    }
 
-    .tags {
-        display: flex;
-        flex-wrap: wrap;
-    }
 
-    .tag {
-        margin: 0.25em;
-        border: dotted 1px #a1a1a1;
-        border-radius: .5em;
-        padding: .5em 1em;
-        font-size: 1.15em;
-        background-color: #F8FCFD;
-    }
-    </style>
-</head>
 <BaseLayout pageTitle={pageTitle}>
-    <div class="tags">
+  <ul class="tags-flex">
     {tags.map((tag: string) => (
-      <p class="tag"><a href={`/tags/${tag}`}>{tag}</a></p>
+      <li class="tag-card">
+        <a href={`/tags/${tag}`}>
+          <span class="tag-title">{tag}</span>
+        </a>
+      </li>
     ))}
-    </div>
+  </ul>
 </BaseLayout>
+
+<style> /*-- mostly just copied code from guideDisplayBlocks tbh */
+  .tags-flex {
+    display: flex; /*unlike in the page that displays all guides, this one will wrap around text*/
+    flex-wrap: wrap;
+    gap: 12px;
+    list-style: none;
+    padding: 0;
+  }
+
+  .tag-card {
+    list-style: none;
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #1a1a1a;
+  }
+
+  .tag-card a {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .tag-title {
+    padding: 10px 20px;
+    font-weight: bold;
+    text-align: center;
+  }
+</style>

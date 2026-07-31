@@ -10,5 +10,8 @@ Project Theca will take quite some effort as I need to learn how to make a websi
 <h2> what do i need to learn to make this happen? </h2> <!-- Probably replace later on with "what DID I have to learn to make this happen -->
 I need to learn how to make basic website using VScode. After that I'll need to know how to add onto it and make it better (which I imagine is what the bulk of my time spent on this project will be).
 
-<h2> Theca Creation Process </h2>
-1. Followed Astro's website creation guide to learn the basics of what I would need for Theca!
+<h2> How to use Theca</h2>
+1. Go to [Theca](https://theca-5psigebk3-mv-7df2.vercel.app/)
+2. Explore the site
+3. To find guides (real ones will be added in future) go to guides tab to browse
+4. If you're looking for something specific, go to the tags tab (more tags/customized ones will be added in future)
